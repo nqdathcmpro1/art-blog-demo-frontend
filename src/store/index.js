@@ -2,12 +2,12 @@ import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import { artSlice } from "../slices/artSlice";
 import { userSlice } from "../slices/userSlice";
 import { persistStore, persistReducer } from "redux-persist";
-import storage from "redux-persist/lib/storage";
+import storage from "redux-persist/lib/storage/session";
 
 const persistConfig = {
   key: "root",
   storage,
- 
+  whitelist: ["userList"]
 };
 
 const reducers = combineReducers({
@@ -23,8 +23,8 @@ const store = configureStore({
     getDefaultMiddleware({
       serializableCheck: false,
     }),
-/*   devTools: false,
- */});
+  devTools: false,
+});
 
 export const persistor = persistStore(store);
 

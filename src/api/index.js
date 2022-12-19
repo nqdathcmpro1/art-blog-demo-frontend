@@ -4,7 +4,8 @@ import store from "../store";
 import { refreshToken } from "../slices/userSlice";
 
 const instance = axios.create({
-  baseURL: "https://art-blog-demo.onrender.com/",
+  /*  baseURL: "https://art-blog-demo.onrender.com/", */
+  baseURL: "http://localhost:5000",
   withCredentials: true,
   credentials: "include",
   headers: {
