@@ -5,7 +5,7 @@ import jwtDecode from "jwt-decode";
 export const userSlice = createSlice({
   name: "userList",
   initialState: {
-    isPending: true,
+    isPending: false,
     currentUser: {},
     authorUser: {},
     accessToken: null,
@@ -28,40 +28,62 @@ export const userSlice = createSlice({
         state.authorUser = action.payload.data;
       })
 
+      .addCase(createUser.pending, (state, action) => {
+        state.isPending = true;
+      })
+
       .addCase(createUser.fulfilled, (state, action) => {
+        state.isPending = false;
         state.registerSuccess = action.payload.message;
         state.users = action.payload.data;
         state.registerError = null;
+        state.loginError = null;
       })
 
       .addCase(createUser.rejected, (state, action) => {
+        state.isPending = false;
         state.registerError = action.payload;
+        state.loginError = null;
         state.registerSuccess = null;
       })
 
+      .addCase(loginUser.pending, (state, action) => {
+        state.isPending = true;
+      })
+
       .addCase(loginUser.fulfilled, (state, action) => {
+        state.isPending = false;
         state.isLoggedIn = true;
         state.currentUser = action.payload.data.data;
         state.accessToken = action.payload.data.accessToken;
+        state.loginError = null;
+        state.registerSuccess = null;
       })
 
       .addCase(loginUser.rejected, (state, action) => {
+        state.isPending = false;
         state.loginError = action.payload;
+        state.registerSuccess = null;
       })
 
       .addCase(editUser.fulfilled, (state, action) => {
+        state.isPending = false;
         state.currentUser = action.payload.data;
       })
 
       .addCase(refreshToken.fulfilled, (state, action) => {
+        state.isPending = false;
         state.accessToken = action.payload.data;
       })
 
       .addCase(logoutUser.fulfilled, (state, action) => {
+        state.isPending = false;
         state.currentUser = {};
         state.isLoggedIn = false;
         state.accessToken = null;
         state.loginError = null;
+        state.registerSuccess = null;
+        state.registerError = null;
       });
   },
 });

@@ -48,8 +48,7 @@ const SearchPage = () => {
         <div className={styles.container}>
           {searchText && (
             <p className={styles.searchResult}>
-              {arts?.length} result{arts?.length > 1 ? "s" : ""} for "{searchText}
-              "
+              {arts?.length} result{arts?.length > 1 ? "s" : ""} for "{searchText}"
             </p>
           )}
           {arts?.length > 0 ? (

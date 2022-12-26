@@ -45,7 +45,7 @@ export const artSlice = createSlice({
 
       .addCase(fetchArtsBySearch.fulfilled, (state, action) => {
         state.searchArts.data = action.payload.data.data;
-      
+
         state.isPending = false;
       })
 
@@ -91,10 +91,7 @@ export const artSlice = createSlice({
 
       .addCase(fetchAuthorArts.rejected, (state) => {
         state.isPending = false;
-      })
-      .addCase(editArt.fulfilled, (state, action) => {
-        
-      })
+      });
   },
 });
 
@@ -130,7 +127,7 @@ export const fetchSingleArt = createAsyncThunk(
 export const createArt = createAsyncThunk(
   "artList/createArt",
   async (newArt) => {
-    const {id, ...art} = newArt
+    const { id, ...art } = newArt;
     const data = await api.createArt(id, art);
     return data;
   }
@@ -139,9 +136,9 @@ export const createArt = createAsyncThunk(
 export const editArt = createAsyncThunk(
   "artList/editArt",
   async (updatedArt) => {
-    const {id, ...art} = updatedArt
+    const { id, ...art } = updatedArt;
     const data = api.editArt(id, art);
-    
+
     return data;
   }
 );
@@ -150,7 +147,6 @@ export const deleteArt = createAsyncThunk("artList/deleteArt", async (id) => {
   const { data } = await api.deleteArt(id);
   return data;
 });
-
 
 export const fetchAuthorArts = createAsyncThunk(
   "artList/fetchAuthorArts",

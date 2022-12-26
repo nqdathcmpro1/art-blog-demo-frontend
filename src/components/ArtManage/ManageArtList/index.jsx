@@ -78,7 +78,7 @@ const ManageTable = ({
           />
         ) : (
           <>
-            <p>No artwork has been uploaded.</p>
+            <p className={styles.noArt}>(No artwork has been uploaded.)</p>
           </>
         )}
       </div>

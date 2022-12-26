@@ -36,7 +36,7 @@ export default makeStyles({
   },
 
   formError: {
-    width: "200px",
+    width: "250px",
     height: "5%",
   },
 
@@ -47,6 +47,8 @@ export default makeStyles({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+
+    textAlign: "center",
 
     color: "red",
     backgroundColor: "#f09cbb",
