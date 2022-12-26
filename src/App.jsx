@@ -27,8 +27,6 @@ function App() {
   return (
     <div className={styles.container}>
       <BrowserRouter>
-        <ScrollToTop />
-        <AppAutoScroll />
         <Routes>
           <Route
             path="/welcome"
@@ -39,66 +37,59 @@ function App() {
             }
           />
           <Route
-            path="*"
+            path="/"
             element={
               <Suspense fallback={<CircleLoading />}>
-                <NavBar />
-                <Main>
-                  <Routes>
-                    <Route
-                      path="/"
-                      element={
-                        <Suspense fallback={<CircleLoading />}>
-                          <Home />
-                        </Suspense>
-                      }
-                    />
-                    <Route path="/art">
-                      <Route
-                        path="gallery"
-                        element={
-                          <Suspense fallback={<CircleLoading />}>
-                            <ArtByAuthor />
-                          </Suspense>
-                        }
-                      />
-                      <Route
-                        path=":id"
-                        element={
-                          <Suspense fallback={<CircleLoading />}>
-                            <ArtDetail />
-                          </Suspense>
-                        }
-                      />
-                      <Route
-                        path="search"
-                        element={
-                          <Suspense fallback={<CircleLoading />}>
-                            <SearchPage />
-                          </Suspense>
-                        }
-                      />
-                    </Route>
-
-                    <Route
-                      path="/manage"
-                      exact
-                      element={
-                        <Suspense fallback={<CircleLoading />}>
-                          <ArtManage />
-                        </Suspense>
-                      }
-                    />
-
-                    <Route
-                      path="*"
-                      element={<NotFoundPage isHomePage={false} />}
-                    />
-                  </Routes>
-                </Main>
+                <Main />
               </Suspense>
             }
-          />
+          >
+            <Route
+              index
+              element={
+                <Suspense fallback={<CircleLoading />}>
+                  <Home />
+                </Suspense>
+              }
+            />
+            <Route path="art">
+              <Route
+                path="gallery"
+                element={
+                  <Suspense fallback={<CircleLoading />}>
+                    <ArtByAuthor />
+                  </Suspense>
+                }
+              />
+              <Route
+                path=":id"
+                element={
+                  <Suspense fallback={<CircleLoading />}>
+                    <ArtDetail />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="search"
+                element={
+                  <Suspense fallback={<CircleLoading />}>
+                    <SearchPage />
+                  </Suspense>
+                }
+              />
+            </Route>
+
+            <Route
+              path="manage"
+              exact
+              element={
+                <Suspense fallback={<CircleLoading />}>
+                  <ArtManage />
+                </Suspense>
+              }
+            />
+            <Route path="*" element={<NotFoundPage isHomePage={false} />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </div>
