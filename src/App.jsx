@@ -11,7 +11,6 @@ const ArtManage = lazy(() => import("./components/ArtManage"));
 const Landing = lazy(() => import("./components/Landing"));
 const ArtDetail = lazy(() => import("./components/partials/ArtDetail"));
 const Main = lazy(() => import("./components/partials/Main"));
-const NavBar = lazy(() => import("./components/NavBar"));
 
 const SearchPage = lazy(() => import("./components/SearchPage"));
 const ArtByAuthor = lazy(() => import("./components/ArtByAuthor"));
@@ -62,18 +61,18 @@ function App() {
                 }
               />
               <Route
-                path=":id"
-                element={
-                  <Suspense fallback={<CircleLoading />}>
-                    <ArtDetail />
-                  </Suspense>
-                }
-              />
-              <Route
                 path="search"
                 element={
                   <Suspense fallback={<CircleLoading />}>
                     <SearchPage />
+                  </Suspense>
+                }
+              />
+              <Route
+                path=":id"
+                element={
+                  <Suspense fallback={<CircleLoading />}>
+                    <ArtDetail />
                   </Suspense>
                 }
               />
